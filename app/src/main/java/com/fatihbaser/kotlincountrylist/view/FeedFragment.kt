@@ -43,6 +43,13 @@ class FeedFragment : Fragment() {
         countryList.adapter=countryAdapter
 
 
+        swipeRefleshLayout.setOnRefreshListener {
+            countryList.visibility=View.GONE
+            countryError.visibility=View.GONE
+            countryLoading.visibility=View.VISIBLE
+            viewModel.refreshData()
+            swipeRefleshLayout.isRefreshing=false
+        }
 
         observeLiveData()
       /*  fragment_button.setOnClickListener {
