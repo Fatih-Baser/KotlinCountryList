@@ -7,6 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.fatihbaser.kotlincountrylist.R
 import com.fatihbaser.kotlincountrylist.model.Country
+import com.fatihbaser.kotlincountrylist.util.downloadFromUrl
+import com.fatihbaser.kotlincountrylist.util.placeholderProgressBar
 import com.fatihbaser.kotlincountrylist.view.FeedFragmentDirections
 import kotlinx.android.synthetic.main.item_country.view.*
 
@@ -28,6 +30,7 @@ class CountryAdapter(val countryList:ArrayList<Country>):RecyclerView.Adapter<Co
             val action =FeedFragmentDirections.actionFeedFragmentToCountryFragment()
             Navigation.findNavController(it).navigate(action)
         }
+        holder.view.imageView.downloadFromUrl(countryList[position].imageUrl, placeholderProgressBar(holder.view.context))
     }
 
     override fun getItemCount(): Int {// kactane row olusturulacagini soyliuyoruz

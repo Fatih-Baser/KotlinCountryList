@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fatihbaser.kotlincountrylist.R
 import com.fatihbaser.kotlincountrylist.adapter.CountryAdapter
+
 import com.fatihbaser.kotlincountrylist.viewmodel.FeedViewModel
 import kotlinx.android.synthetic.main.fragment_feed.*
 
@@ -49,6 +50,9 @@ class FeedFragment : Fragment() {
             countryLoading.visibility=View.VISIBLE
             viewModel.refreshData()
             swipeRefleshLayout.isRefreshing=false
+
+            val myString="fatih"
+          //  myString.myExtension("aaa")
         }
 
         observeLiveData()
