@@ -48,7 +48,7 @@ class FeedFragment : Fragment() {
             countryList.visibility=View.GONE
             countryError.visibility=View.GONE
             countryLoading.visibility=View.VISIBLE
-            viewModel.refreshData()
+            viewModel.refreshFromAPI()
             swipeRefleshLayout.isRefreshing=false
 
             val myString="fatih"

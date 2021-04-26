@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import com.fatihbaser.kotlincountrylist.R
+import com.fatihbaser.kotlincountrylist.util.downloadFromUrl
+import com.fatihbaser.kotlincountrylist.util.placeholderProgressBar
 import com.fatihbaser.kotlincountrylist.viewmodel.CountryViewModel
 import kotlinx.android.synthetic.main.fragment_country.*
 
@@ -35,17 +37,17 @@ private  var  countryUuid=0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        arguments?.let {
+
+            countryUuid= CountryFragmentArgs.fromBundle(it).countryUuid
+        }
         viewModel=ViewModelProviders.of(this).get(CountryViewModel::class.java)
-        viewModel.getDataFromRoom()
+        viewModel.getDataFromRoom(countryUuid)
 
 
         observeLiveData()
 
 
-        arguments?.let {
-
-            countryUuid= CountryFragmentArgs.fromBundle(it).countryUuid
-        }
     }
 
     private fun observeLiveData(){
@@ -57,6 +59,10 @@ private  var  countryUuid=0
                 countryCurrency.text = country.countryCurrency
                 countryLanguage.text = country.countryLanguage
                 countryRegion.text = country.countryRegion
+                context?.let {
+                    countryImage.downloadFromUrl(country.flag, placeholderProgressBar(it))
+                }
+
 
             }
         })
